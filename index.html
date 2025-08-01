@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Friendship Day Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #ff66b3;
+            --secondary: #66b3ff;
+            --accent: #ffcc66;
+            --light: #fff5f9;
+            --dark: #333;
+            --success: #66ff99;
+            --error: #ff6666;
+            --shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f9, #f5f9ff);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--dark);
+            transition: all 1.5s ease;
+            position: relative;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* New: Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50px;
+            padding: 10px 15px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            transform: scale(1.05);
+        }
+
+        .music-control {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            background: var(--secondary);
+            transform: rotate(360deg);
+        }
+
+        /* Enhanced Steps */
+        .step {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .step.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .step.completed {
+            transform: translateY(-10px);
+            opacity: 0.7;
+        }
+
+        /* New: Step Counter */
+        .step-counter {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* New: Animated Underline for Headings */
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            animation: underlinePulse 2s infinite;
+        }
+
+        @keyframes underlinePulse {
+            0%, 100% { width: 100px; }
+            50% { width: 150px; }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Romantic quote styling */
+        .romantic-quote {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.7);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .romantic-quote::before, .romantic-quote::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--secondary);
+            position: absolute;
+        }
+
+        .romantic-quote::before {
+            top: 5px;
+            left: 10px;
+        }
+
+        .romantic-quote::after {
+            bottom: 5px;
+            right: 10px;
+        }
+
+        /* Enhanced Buttons */
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            min-width: 200px;
+            text-align: center;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn.secondary:hover {
+            background: var(--light);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            gap: 15px;
+        }
+
+        /* Enhanced Floating Elements */
+        .floating-element {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Enhanced Photo Frame */
+        .photo-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 8px solid white;
+            margin: 1.5rem auto;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.5s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 50%, rgba(0,0,0,0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-frame:hover::before {
+            opacity: 1;
+        }
+
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* New: Photo Frame Animation */
+        @keyframes photoGlow {
+            0%, 100% { box-shadow: 0 0 15px var(--primary); }
+            50% { box-shadow: 0 0 30px var(--secondary); }
+        }
+
+        .photo-frame.animate-glow {
+            animation: photoGlow 2s infinite;
+        }
+
+        /* Enhanced Quiz Styles */
+        .quiz-question {
+            margin-bottom: 2rem;
+            background: rgba(255,255,255,0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary);
+        }
+
+        .quiz-question.active {
+            transform: scale(1);
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #eee;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background: var(--light);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(102, 255, 153, 0.1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--error);
+            background: rgba(255, 102, 102, 0.1);
+        }
+
+        /* Enhanced Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 15px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 2rem 0;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 0.8s ease;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                            rgba(255,255,255,0.1), 
+                            rgba(255,255,255,0.4), 
+                            rgba(255,255,255,0.1));
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Enhanced Friendship Meter */
+        .friendship-meter {
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .meter-value {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0.5rem 0;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .meter-message {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-top: 1rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+        }
+
+        /* Enhanced Celebration Effects */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .celebration.active {
+            opacity: 1;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            opacity: 0;
+        }
+
+        /* New: Floating Hearts Background */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* New: Signature */
+        .signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            text-align: right;
+            margin-top: 2rem;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .step {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .romantic-quote {
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+
+            .btn {
+                min-width: 150px;
+                padding: 0.8rem 1.5rem;
+            }
+
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                transform: scale(0.9);
+            }
+        }
+
+        /* Special Animations */
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes tada {
+            0% { transform: scale(1); }
+            10%, 20% { transform: scale(0.9) rotate(-5deg); }
+            30%, 50%, 70%, 90% { transform: scale(1.1) rotate(5deg); }
+            40%, 60%, 80% { transform: scale(1.1) rotate(-5deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.8s ease;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .tada {
+            animation: tada 1s ease;
+        }
+
+        .heartbeat {
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Enhanced Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 102, 179, 0.7);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: multiply;
+            transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(102, 179, 255, 0.5);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+            backdrop-filter: blur(1px);
+        }
+
+        /* New: Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 1s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* New: Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            color: var(--primary);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+            cursor: pointer;
+            display: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        /* New: Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 99;
+            transition: all 0.3s ease;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        /* New: Tooltip */
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0,0,0,0.8) transparent transparent transparent;
+        }
+
+        /* New: Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Creating your special Friendship Day experience...</div>
+    </div>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <button class="music-control" id="playBtn">▶️</button>
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">↓</div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" id="fab" title="Quick Menu">
+        <span>❤️</span>
+        <div class="tooltip">Quick Menu</div>
+    </div>
+
+    <div class="container">
+        <!-- Step 1: Welcome -->
+        <div class="step active" id="step1">
+            <div class="step-counter">1</div>
+            <h1 class="animate__animated animate__fadeInDown">Happy Friendship Day!</h1>
+            <div class="photo-frame animate-glow">
+                <img src="https://c.ndtvimg.com/2024-07/dd13adno_gifts-_625x300_10_July_24.jpg?im=FaceCrop,algorithm=dnn,width=1280,height=720" alt="Best Friends" id="friendPhoto">
+            </div>
+            <p>Dear <span id="friendName" class="heartbeat">Friend</span>,</p>
+            <p>I created this special experience to celebrate our amazing friendship. Are you ready to begin our journey down memory lane?</p>
+            
+            <div class="romantic-quote">
+                "A true friend is the greatest of all blessings, and the one we take least thought of acquiring."
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn animate__animated animate__pulse animate__infinite" id="startBtn">Let's Begin!</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Friendship Quiz -->
+        <div class="step" id="step3">
+            <div class="step-counter">2</div>
+            <h2>How Well Do You Know Me?</h2>
+            <p>Let's test your knowledge about our friendship!</p>
+            
+            <div class="romantic-quote">
+                "Friendship is the golden thread that ties the heart of all the world."
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="quizProgress"></div>
+            </div>
+            
+            <div id="quizContainer">
+                <!-- Questions will be inserted here by JavaScript -->
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn hidden" id="nextBtn2">See Results</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Friendship Meter -->
+        <div class="step" id="step5">
+            <div class="step-counter">3</div>
+            <h2>Our Friendship Level</h2>
+            <p>Based on our journey together, here's how strong our friendship is!</p>
+            
+            <div class="romantic-quote">
+                "A real friend is one who walks in when the rest of the world walks out."
+            </div>
+            
+            <div class="friendship-meter">
+                <div class="meter-value" id="friendshipPercent">0%</div>
+                <div class="progress-container">
+                    <div class="progress-bar" id="friendshipMeter"></div>
+                </div>
+                <div class="meter-message" id="friendshipMessage">Calculating our bond...</div>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn" id="celebrateBtn">Celebrate Our Friendship!</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Final Celebration -->
+        <div class="step" id="step6">
+            <div class="step-counter">4</div>
+            <h2>To My Dearest Friend</h2>
+            <div class="photo-frame pulse">
+                <img src="https://c.ndtvimg.com/2024-07/dd13adno_gifts-_625x300_10_July_24.jpg?im=FaceCrop,algorithm=dnn,width=1280,height=720" alt="Celebration">
+            </div>
+            
+            <div class="romantic-quote">
+                "In the cookie of life, friends are the chocolate chips."
+            </div>
+            
+            <p id="finalMessage">No matter where life takes us, you'll always have a special place in my heart.</p>
+            <p>Thank you for being you and for being my friend. Our bond is more precious than gold, more comforting than a warm blanket, and more enduring than the stars.</p>
+            
+            <div class="romantic-quote">
+                "Side by side or miles apart, friends like us are always close at heart."
+            </div>
+            
+            <div class="signature">Forever yours</div>
+            
+            <div class="btn-group">
+                <button class="btn secondary" id="restartBtn">Relive the Journey</button>
+                <button class="btn" id="shareBtn">Share This</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration">
+        <!-- Celebration elements will be added here by JavaScript -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const loadingScreen = document.getElementById('loadingScreen');
+            const floatingHearts = document.getElementById('floatingHearts');
+            const musicPlayer = document.getElementById('musicPlayer');
+            const playBtn = document.getElementById('playBtn');
+            const bgMusic = document.getElementById('bgMusic');
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const fab = document.getElementById('fab');
+            const steps = document.querySelectorAll('.step');
+            const startBtn = document.getElementById('startBtn');
+            const nextBtns = [document.getElementById('nextBtn2')];
+            const celebrateBtn = document.getElementById('celebrateBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const shareBtn = document.getElementById('shareBtn');
+            const friendName = document.getElementById('friendName');
+            const friendPhoto = document.getElementById('friendPhoto');
+            const quizContainer = document.getElementById('quizContainer');
+            const quizProgress = document.getElementById('quizProgress');
+            const friendshipMeter = document.getElementById('friendshipMeter');
+            const friendshipPercent = document.getElementById('friendshipPercent');
+            const friendshipMessage = document.getElementById('friendshipMessage');
+            const finalMessage = document.getElementById('finalMessage');
+            const celebration = document.getElementById('celebration');
+            
+            // Custom cursor elements
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            
+            // Current step and quiz tracking
+            let currentStep = 0;
+            let quizScore = 0;
+            let totalQuestions = 0;
+            let friendshipScore = 0;
+            let isMusicPlaying = false;
+            
+            // Friend's name
+            let friendNameValue = "Friend";
+            
+            // Quiz questions with romantic friendship themes
+            const quizQuestions = [
+                {
+                    question: "Where did we first meet?",
+                    options: ["Through friends - destiny brought us together", "Work - professional turned personal", "School - where our story began", "I don't remember - but I'm glad we did"],
+                    answer: 0
+                },
+                {
+                    question: "What's my favorite memory with you?",
+                    options: ["Our first adventure together - the start of something beautiful", "That time we stayed up all night talking - souls connecting", 
+                              "When you helped me through a tough time - you were my rock", "All of the above - every moment with you is special"],
+                    answer: 3
+                },
+                {
+                    question: "How long have we been friends?",
+                    options: ["Less than a year - but it feels like forever", "1-3 years - building something beautiful", "3-5 years - our roots are growing deep", "More than 5 years - our bond is timeless"],
+                    answer: 3
+                },
+                {
+                    question: "What's something I always appreciate about you?",
+                    options: ["Your honesty - you keep me grounded", "Your sense of humor - you light up my life", "Your support - you're always there for me", "All of the above - you're my perfect friend"],
+                    answer: 3
+                },
+                {
+                    question: "What song reminds me of our friendship?",
+                    options: ["'Tere Bin' by Atif Aslam", "'You've Got a Friend' by James Taylor", 
+                              "'I'll Be There For You' (Friends theme)", "'Tum Hi Ho' by arijit singh"],
+                    answer: 3
+                }
+            ];
+            
+            // Friendship messages based on score
+            const friendshipMessages = [
+                { min: 0, max: 25, message: "We're just getting started on this beautiful journey!" },
+                { min: 26, max: 50, message: "Our friendship is blossoming beautifully!" },
+                { min: 51, max: 75, message: "We share a bond that's rare and precious!" },
+                { min: 76, max: 90, message: "Our connection is almost magical!" },
+                { min: 91, max: 100, message: "We're soulmates in friendship!" }
+            ];
+
+            // Final messages with romantic friendship lines
+            const finalMessages = [
+                "Our friendship is my safe haven in this chaotic world.",
+                "You're the missing piece that makes my life complete.",
+                "With you, I've found a home outside of a house.",
+                "You understand me without words - that's our magic.",
+                "Our friendship is my favorite love story."
+            ];
+
+            // Show loading screen initially
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                    // Initialize page after loading
+                    initPage();
+                }, 1000);
+            }, 2000);
+
+            // Initialize page elements
+            function initPage() {
+                // Ask for friend's name
+                const name = prompt("What's your friend's name?");
+                if (name && name.trim() !== "") {
+                    friendNameValue = name.trim();
+                    friendName.textContent = friendNameValue;
+                    
+                    // Update final message with friend's name
+                    finalMessage.textContent = `${friendNameValue}, no matter where life takes us, you'll always have a special place in my heart.`;
+                }
+                
+                // Initialize quiz
+                initQuiz();
+                
+                // Create floating elements
+                createFloatingElements();
+                
+                // Initialize music player
+                initMusicPlayer();
+                
+                // Initialize scroll indicator
+                initScrollIndicator();
+                
+                // Initialize floating action button
+                initFAB();
+                
+                // Initialize custom cursor
+                initCustomCursor();
+            }
+            
+            // Initialize music player
+            function initMusicPlayer() {
+                playBtn.addEventListener('click', toggleMusic);
+                
+                // Try to autoplay (may not work due to browser restrictions)
+                const playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        isMusicPlaying = true;
+                        playBtn.textContent = "⏸️";
+                    })
+                    .catch(error => {
+                        isMusicPlaying = false;
+                        playBtn.textContent = "▶️";
+                    });
+                }
+            }
+            
+            // Toggle music play/pause
+            function toggleMusic() {
+                if (isMusicPlaying) {
+                    bgMusic.pause();
+                    playBtn.textContent = "▶️";
+                } else {
+                    bgMusic.play();
+                    playBtn.textContent = "⏸️";
+                }
+                isMusicPlaying = !isMusicPlaying;
+            }
+            
+            // Initialize scroll indicator
+            function initScrollIndicator() {
+                window.addEventListener('scroll', () => {
+                    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+                    const scrolled = window.scrollY;
+                    
+                    if (scrolled < scrollable - 100) {
+                        scrollIndicator.style.display = 'block';
+                    } else {
+                        scrollIndicator.style.display = 'none';
+                    }
+                });
+                
+                scrollIndicator.addEventListener('click', () => {
+                    window.scrollBy({
+                        top: window.innerHeight,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Initialize floating action button
+            function initFAB() {
+                fab.addEventListener('click', () => {
+                    // Create a quick menu
+                    const menu = document.createElement('div');
+                    menu.className = 'fab-menu';
+                    menu.innerHTML = `
+                        <div class="fab-item" data-action="restart">Restart</div>
+                        <div class="fab-item" data-action="music">${isMusicPlaying ? 'Pause Music' : 'Play Music'}</div>
+                        <div class="fab-item" data-action="share">Share</div>
+                        <div class="fab-item" data-action="top">Back to Top</div>
+                    `;
+                    menu.style.position = 'absolute';
+                    menu.style.bottom = '70px';
+                    menu.style.right = '0';
+                    menu.style.background = 'white';
+                    menu.style.borderRadius = '10px';
+                    menu.style.padding = '10px';
+                    menu.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+                    menu.style.opacity = '0';
+                    menu.style.transform = 'translateY(20px)';
+                    menu.style.transition = 'all 0.3s ease';
+                    menu.style.zIndex = '100';
+                    
+                    fab.appendChild(menu);
+                    
+                    setTimeout(() => {
+                        menu.style.opacity = '1';
+                        menu.style.transform = 'translateY(0)';
+                    }, 10);
+                    
+                    // Handle menu item clicks
+                    menu.addEventListener('click', (e) => {
+                        const action = e.target.getAttribute('data-action');
+                        
+                        switch(action) {
+                            case 'restart':
+                                restartJourney();
+                                break;
+                            case 'music':
+                                toggleMusic();
+                                break;
+                            case 'share':
+                                shareExperience();
+                                break;
+                            case 'top':
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                });
+                                break;
+                        }
+                        
+                        menu.remove();
+                    });
+                    
+                    // Close menu when clicking outside
+                    document.addEventListener('click', function closeMenu(e) {
+                        if (!fab.contains(e.target)) {
+                            menu.remove();
+                            document.removeEventListener('click', closeMenu);
+                        }
+                    });
+                });
+            }
+            
+            // Initialize custom cursor
+            function initCustomCursor() {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
+                    
+                    setTimeout(() => {
+                        cursorFollower.style.left = e.clientX + 'px';
+                        cursorFollower.style.top = e.clientY + 'px';
+                    }, 100);
+                    
+                    // Random chance to create a floating heart
+                    if (Math.random() > 0.97) {
+                        createFloatingHeart(e.clientX, e.clientY);
+                    }
+                });
+                
+                // Cursor effects on interactive elements
+                const interactiveElements = document.querySelectorAll('button, .photo-frame, .quiz-option, a');
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                        cursor.style.background = 'rgba(102, 179, 255, 0.7)';
+                        cursorFollower.style.width = '30px';
+                        cursorFollower.style.height = '30px';
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                        cursor.style.background = 'rgba(255, 102, 179, 0.7)';
+                        cursorFollower.style.width = '40px';
+                        cursorFollower.style.height = '40px';
+                    });
+                });
+            }
+            
+            // Initialize quiz
+            function initQuiz() {
+                totalQuestions = quizQuestions.length;
+                quizContainer.innerHTML = '';
+                
+                quizQuestions.forEach((question, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'quiz-question hidden';
+                    questionDiv.id = `question-${index}`;
+                    
+                    const questionText = document.createElement('h3');
+                    questionText.textContent = question.question;
+                    questionDiv.appendChild(questionText);
+                    
+                    const optionsDiv = document.createElement('div');
+                    optionsDiv.className = 'quiz-options';
+                    
+                    question.options.forEach((option, oIndex) => {
+                        const optionBtn = document.createElement('div');
+                        optionBtn.className = 'quiz-option';
+                        optionBtn.textContent = option;
+                        
+                        optionBtn.addEventListener('click', function() {
+                            checkAnswer(index, oIndex, optionBtn);
+                        });
+                        
+                        optionsDiv.appendChild(optionBtn);
+                    });
+                    
+                    questionDiv.appendChild(optionsDiv);
+                    quizContainer.appendChild(questionDiv);
+                });
+                
+                // Show first question
+                document.getElementById('question-0').classList.remove('hidden');
+            }
+            
+            // Check quiz answer
+            function checkAnswer(qIndex, oIndex, optionBtn) {
+                const question = quizQuestions[qIndex];
+                const questionDiv = document.getElementById(`question-${qIndex}`);
+                const options = questionDiv.querySelectorAll('.quiz-option');
+                
+                // Disable all options
+                options.forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                });
+                
+                // Mark selected option
+                optionBtn.classList.add('selected');
+                
+                // Check if correct
+                if (oIndex === question.answer) {
+                    optionBtn.classList.add('correct');
+                    quizScore++;
+                    
+                    // Increase friendship score
+                    friendshipScore += 10;
+                    updateFriendshipMeter();
+                    
+                    // Create celebration effect
+                    createMiniCelebration(optionBtn);
+                } else {
+                    optionBtn.classList.add('incorrect');
+                    options[question.answer].classList.add('correct');
+                }
+                
+                // Update progress
+                quizProgress.style.width = `${((qIndex + 1) / quizQuestions.length) * 100}%`;
+                
+                // Show next question or finish
+                setTimeout(() => {
+                    if (qIndex < quizQuestions.length - 1) {
+                        questionDiv.classList.add('hidden');
+                        document.getElementById(`question-${qIndex + 1}`).classList.remove('hidden');
+                        
+                        // Scroll to next question
+                        document.getElementById(`question-${qIndex + 1}`).scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    } else {
+                        // Quiz complete
+                        nextBtns[0].classList.remove('hidden');
+                        
+                        // Calculate friendship percentage
+                        const percentage = Math.round((quizScore / quizQuestions.length) * 100);
+                        friendshipScore += percentage;
+                        updateFriendshipMeter();
+                        
+                        // Add romantic celebration message
+                        const celebrationMsg = document.createElement('div');
+                        celebrationMsg.className = 'romantic-quote';
+                        celebrationMsg.textContent = getRandomFinalMessage();
+                        questionDiv.parentNode.insertBefore(celebrationMsg, questionDiv.nextSibling);
+                    }
+                }, 1500);
+            }
+            
+            // Get random romantic final message
+            function getRandomFinalMessage() {
+                const messages = [
+                    "Friendship isn't about who you've known the longest. It's about who walked into your life and said, 'I'm here for you' and proved it.",
+                    "A true friend sees the first tear, catches the second, and stops the third.",
+                    "Friendship is the only cement that will ever hold the world together.",
+                    "A friend is someone who gives you total freedom to be yourself.",
+                    "There's not a word yet for old friends who've just met."
+                ];
+                return messages[Math.floor(Math.random() * messages.length)];
+            }
+            
+            // Create mini celebration for correct answers
+            function createMiniCelebration(element) {
+                const rect = element.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'floating-element';
+                        particle.innerHTML = ['✨', '🌟', '🎉'][Math.floor(Math.random() * 3)];
+                        particle.style.left = x + 'px';
+                        particle.style.top = y + 'px';
+                        particle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                        particle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                        particle.style.opacity = '1';
+                        document.body.appendChild(particle);
+                        
+                        // Random direction
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * 100 + 50;
+                        
+                        setTimeout(() => {
+                            particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+                            particle.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                particle.remove();
+                            }, 1000);
+                        }, 10);
+                    }, i * 100);
+                }
+            }
+            
+            // Update friendship meter
+            function updateFriendshipMeter() {
+                // Cap at 100
+                const percentage = Math.min(friendshipScore, 100);
+                
+                friendshipMeter.style.width = `${percentage}%`;
+                friendshipPercent.textContent = `${percentage}%`;
+                
+                // Update message based on percentage
+                const messageObj = friendshipMessages.find(m => percentage >= m.min && percentage <= m.max);
+                if (messageObj) {
+                    friendshipMessage.textContent = messageObj.message;
+                }
+                
+                // Update final message based on percentage
+                if (percentage >= 90) {
+                    finalMessage.textContent = `${friendNameValue}, you're not just my friend, you're family! Our bond is unbreakable and more precious than diamonds!`;
+                } else if (percentage >= 70) {
+                    finalMessage.textContent = `${friendNameValue}, you're one of my closest friends and I cherish our relationship deeply! You're the sunshine in my cloudy days.`;
+                } else {
+                    finalMessage.textContent = `${friendNameValue}, no matter where life takes us, you'll always have a special place in my heart. Our story is just beginning.`;
+                }
+                
+                // Change background gradient based on friendship level
+                const hue1 = 330 + (percentage * 1.5); // Pink to blue
+                const hue2 = 200 + (percentage * 0.5); // Blue to teal
+                document.body.style.background = `linear-gradient(135deg, hsl(${hue1}, 100%, 95%), hsl(${hue2}, 100%, 95%)`;
+            }
+            
+            // Move to next step
+            function nextStep() {
+                // Mark current step as completed
+                steps[currentStep].classList.remove('active');
+                steps[currentStep].classList.add('completed');
+                
+                // Show next step
+                currentStep++;
+                steps[currentStep].classList.add('active');
+                
+                // Special effects for certain steps
+                if (currentStep === 2) {
+                    // Friendship meter step - animate progress
+                    setTimeout(() => {
+                        updateFriendshipMeter();
+                    }, 500);
+                } else if (currentStep === 3) {
+                    // Final step - change background
+                    document.body.style.background = 'linear-gradient(135deg, #ffccf2, #ccf2ff)';
+                    
+                    // Change photo
+                    friendPhoto.src = "https://i.imgur.com/LSmzvf3.jpg";
+                    
+                    // Update final message with a random romantic line
+                    const romanticLines = [
+                        "You're the friend who makes my ordinary days extraordinary.",
+                        "Our friendship is my favorite love story.",
+                        "You're my person - the one I can always count on.",
+                        "Life gave me the best gift when it gave me you as a friend.",
+                        "You're not my best friend, you're my best everything."
+                    ];
+                    const randomLine = romanticLines[Math.floor(Math.random() * romanticLines.length)];
+                    
+                    const extraMessage = document.createElement('p');
+                    extraMessage.className = 'romantic-quote';
+                    extraMessage.textContent = randomLine;
+                    finalMessage.parentNode.insertBefore(extraMessage, finalMessage.nextSibling);
+                    
+                    // Auto-scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Scroll to the new step
+                steps[currentStep].scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // Celebrate friendship
+            function celebrateFriendship() {
+                // Show celebration elements
+                celebration.classList.add('active');
+                
+                // Create fireworks
+                createFireworks();
+                
+                // Create confetti
+                createConfetti();
+                
+                // Change button text
+                celebrateBtn.textContent = "Best Friends Forever! 💖";
+                celebrateBtn.classList.add('pulse');
+                
+                // Play celebration sound if music is enabled
+                if (isMusicPlaying) {
+                    const cheer = new Audio('https://www.soundjay.com/human/sounds/applause-01.mp3');
+                    cheer.volume = 0.5;
+                    cheer.play();
+                }
+                
+                // Move to final step after delay
+                setTimeout(() => {
+                    nextStep();
+                }, 2000);
+            }
+            
+            // Create fireworks
+            function createFireworks() {
+                const colors = ['#ff66b3', '#66b3ff', '#ffcc66', '#66ff99', '#b366ff'];
+                
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const firework = document.createElement('div');
+                        firework.className = 'floating-element';
+                        firework.style.left = Math.random() * 100 + 'vw';
+                        firework.style.top = Math.random() * 100 + 'vh';
+                        firework.style.fontSize = (Math.random() * 40 + 20) + 'px';
+                        firework.innerHTML = ['✨', '🎉', '🎊', '💖', '🌟'][Math.floor(Math.random() * 5)];
+                        firework.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                        firework.style.opacity = '1';
+                        celebration.appendChild(firework);
+                        
+                        // Create explosion particles
+                        createExplosion(firework);
+                        
+                        setTimeout(() => {
+                            firework.remove();
+                        }, 5000);
+                    }, i * 300);
+                }
+            }
+            
+            // Create explosion effect for fireworks
+            function createExplosion(element) {
+                const rect = element.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                const colors = ['#ff66b3', '#66b3ff', '#ffcc66', '#66ff99', '#b366ff'];
+                
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'floating-element';
+                    particle.innerHTML = ['✨', '🌟'][Math.floor(Math.random() * 2)];
+                    particle.style.left = x + 'px';
+                    particle.style.top = y + 'px';
+                    particle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                    particle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                    particle.style.opacity = '1';
+                    particle.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    celebration.appendChild(particle);
+                    
+                    // Random direction
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 100 + 50;
+                    
+                    setTimeout(() => {
+                        particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+                        particle.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            particle.remove();
+                        }, 1000);
+                    }, 10);
+                }
+            }
+            
+            // Create confetti
+            function createConfetti() {
+                const colors = ['#ff66b3', '#66b3ff', '#ffcc66', '#66ff99', '#b366ff'];
+                
+                for (let i = 0; i < 150; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                    celebration.appendChild(confetti);
+                    
+                    const animationDuration = Math.random() * 3 + 2;
+                    
+                    const keyframes = `
+                        @keyframes confetti-fall-${i} {
+                            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                            100% { transform: translateY(100vh) rotate(${Math.random() * 360}deg); opacity: 0; }
+                        }
+                    `;
+                    
+                    const style = document.createElement('style');
+                    style.innerHTML = keyframes;
+                    document.head.appendChild(style);
+                    
+                    confetti.style.animation = `confetti-fall-${i} ${animationDuration}s linear forwards`;
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                        style.remove();
+                    }, animationDuration * 1000);
+                }
+            }
+            
+            // Create floating heart at specific position
+            function createFloatingHeart(x, y) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-element';
+                heart.innerHTML = '❤️';
+                heart.style.left = x + 'px';
+                heart.style.top = y + 'px';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDuration = (Math.random() * 4 + 2) + 's';
+                heart.style.opacity = '1';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }
+            
+            // Restart journey
+            function restartJourney() {
+                // Reset steps
+                steps.forEach(step => {
+                    step.classList.remove('active', 'completed');
+                });
+                
+                // Reset to first step
+                currentStep = 0;
+                steps[0].classList.add('active');
+                
+                // Reset quiz
+                quizScore = 0;
+                friendshipScore = 0;
+                initQuiz();
+                
+                // Reset progress bars
+                quizProgress.style.width = '0%';
+                friendshipMeter.style.width = '0%';
+                friendshipPercent.textContent = '0%';
+                
+                // Reset background
+                document.body.style.background = 'linear-gradient(135deg, #fff5f9, #f5f9ff)';
+                
+                // Reset photo
+                friendPhoto.src = "https://i.imgur.com/JqYeYnW.jpg";
+                
+                // Reset button
+                celebrateBtn.textContent = "Celebrate Our Friendship!";
+                celebrateBtn.classList.remove('pulse');
+                
+                // Hide celebration
+                celebration.classList.remove('active');
+                celebration.innerHTML = '';
+                
+                // Scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Share experience
+            function shareExperience() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Friendship Day Celebration',
+                        text: `Check out this special Friendship Day experience I created for ${friendNameValue}! ${getRandomShareMessage()}`,
+                        url: window.location.href
+                    }).catch(err => {
+                        console.log('Error sharing:', err);
+                        fallbackShare();
+                    });
+                } else {
+                    fallbackShare();
+                }
+            }
+            
+            // Get random share message
+            function getRandomShareMessage() {
+                const messages = [
+                    "True friendship is the most precious gift!",
+                    "Friends like us make life worth living!",
+                    "Our friendship is my greatest treasure!",
+                    "Side by side or miles apart, friends like us are always close at heart!",
+                    "A friend like you makes every day brighter!"
+                ];
+                return messages[Math.floor(Math.random() * messages.length)];
+            }
+            
+            // Fallback share dialog
+            function fallbackShare() {
+                const shareUrl = window.location.href;
+                const shareText = `I created a special Friendship Day experience for ${friendNameValue}! ${getRandomShareMessage()} Check it out: ${shareUrl}`;
+                
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        alert('Link copied to clipboard!');
+                    }).catch(err => {
+                        prompt('Copy this link to share:', shareUrl);
+                    });
+                } else {
+                    prompt('Copy this link to share:', shareUrl);
+                }
+            }
+            
+            // Create floating background elements
+            function createFloatingElements() {
+                const elements = ['❤️', '💖', '✨', '🌟', '👫', '🤝'];
+                
+                for (let i = 0; i < 30; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.top = Math.random() * 100 + 'vh';
+                    element.style.fontSize = (Math.random() * 25 + 15) + 'px';
+                    element.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                    element.style.animationDelay = (Math.random() * 5) + 's';
+                    element.style.opacity = '0.7';
+                    floatingHearts.appendChild(element);
+                }
+            }
+            
+            // Button event listeners
+            startBtn.addEventListener('click', nextStep);
+            nextBtns.forEach(btn => btn.addEventListener('click', nextStep));
+            celebrateBtn.addEventListener('click', celebrateFriendship);
+            restartBtn.addEventListener('click', restartJourney);
+            shareBtn.addEventListener('click', shareExperience);
+            
+            // Photo frame click effect
+            friendPhoto.addEventListener('click', function() {
+                this.parentElement.classList.add('tada');
+                setTimeout(() => {
+                    this.parentElement.classList.remove('tada');
+                }, 1000);
+                
+                // Toggle between photos
+                if (this.src.includes('JqYeYnW')) {
+                    this.src = "https://i.imgur.com/LSmzvf3.jpg";
+                } else {
+                    this.src = "https://i.imgur.com/JqYeYnW.jpg";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
